@@ -25,4 +25,11 @@ public class PersonController {
     public void registerNewPerson(@RequestBody Person person){
         personService.addNewPerson(person);
     }
+
+    //pl.: DELETE http://localhost:8080/api/v2/person/1 törli ki az 1-es id-val rendelkező személyt
+    @DeleteMapping(path = "{personId}")
+    public void deletePerson(@PathVariable("personId") Long id){
+        personService.deletePerson(id);
+
+    }
 }
