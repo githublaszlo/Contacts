@@ -30,6 +30,7 @@ public class Address {
     @Column(
             name = "name",
             nullable = false,
+            updatable = false,
             columnDefinition = "TEXT"
     )
     private String name;

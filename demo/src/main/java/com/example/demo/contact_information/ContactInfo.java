@@ -31,14 +31,14 @@ public class ContactInfo {
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String type;
+    private String type; // pl.: telefon, email
 
     @Column(
             name = "description",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String description;
+    private String description; // típus leírása
 
     @ManyToOne
     @JoinColumn(
@@ -49,6 +49,7 @@ public class ContactInfo {
     )
     private Address address;
 
+    //a fordítási hiba elkerülése miatt a Long addressId elé is betettem a @Column annotációt
     @Column(
             name = "address_id2"
     )

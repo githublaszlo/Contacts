@@ -26,7 +26,8 @@ public class Person {
 
     @Column(
             name = "name",
-            nullable = false
+            nullable = false,
+            columnDefinition = "TEXT"
     )
     private String name;
 
