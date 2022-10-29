@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -18,8 +19,13 @@ public class PersonService {
 
     public List<Person> getPersons() {
         return personRepository.findAll();
-        /*return List.of(
+    }
 
-        );*/
+    public void addNewPerson(Person person) {
+        Optional<Person> personOptional = personRepository.findPersonByName(person.getName());
+        if (personOptional.isPresent()){
+            throw new IllegalStateException("name taken");
+        }
+        personRepository.save(person);
     }
 }
