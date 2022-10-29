@@ -1,9 +1,11 @@
 package com.example.demo.person;
 
+import com.example.demo.address.Address;
+
 import javax.persistence.*;
 
-@Entity
-@Table
+@Entity(name = "Person")
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -16,8 +18,35 @@ public class Person {
             strategy = GenerationType.SEQUENCE,
             generator = "person_sequence"
     )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+
+    @Column(
+            name = "name",
+            nullable = false
+    )
     private String name;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "permanent_id",
+            nullable = true,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey( name = "perm_address_fk")
+    )
+    private Address permanentAddress;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "temporary_id",
+            nullable = true,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey( name = "temp_address_fk")
+    )
+    private Address temporaryAddress;
     private Long permanentAddressId;
     private Long temporaryAddressId;
 

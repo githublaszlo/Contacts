@@ -1,11 +1,58 @@
 package com.example.demo.contact_information;
 
+import com.example.demo.address.Address;
+
+import javax.persistence.*;
+
+import static javax.persistence.GenerationType.SEQUENCE;
+
+@Entity (name = "Contact_info")
+@Table (name = "contact_info")
 public class ContactInfo {
 
+    @Id
+    @SequenceGenerator(
+            name = "contact_info_sequence",
+            sequenceName = "contact_info_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "contact_info_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
-    private Long addressId;
+
+    @Column(
+            name = "type",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String type;
+
+    @Column(
+            name = "description",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String description;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "address_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey( name = "address_fk")
+    )
+    private Address address;
+
+    @Column(
+            name = "address_id2"
+    )
+    private Long addressId;
 
     public ContactInfo() {
     }
