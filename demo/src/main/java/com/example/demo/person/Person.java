@@ -31,6 +31,12 @@ public class Person {
         this.temporaryAddressId = temporaryAddressId;
     }
 
+    public Person(String name, Long permanentAddressId, Long temporaryAddressId) {
+        this.name = name;
+        this.permanentAddressId = permanentAddressId;
+        this.temporaryAddressId = temporaryAddressId;
+    }
+
     public Long getId() {
         return id;
     }
