@@ -1,7 +1,21 @@
 package com.example.demo.person;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Person {
 
+    @Id
+    @SequenceGenerator(
+            name = "person_sequence",
+            sequenceName = "person_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "person_sequence"
+    )
     private Long id;
     private String name;
     private Long permanentAddressId;
